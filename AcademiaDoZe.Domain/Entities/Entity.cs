@@ -1,5 +1,7 @@
 ﻿// Aline Duarte Sutil
 
+using AcademiaDoZe.Domain.Exceptions;
+
 namespace AcademiaDoZe.Domain.Entities;
 
 public abstract class Entity
@@ -9,7 +11,7 @@ public abstract class Entity
     protected Entity(int id = 0)
     {
         if (id < 0)
-            throw new Exception("ID_NEGATIVO");
+            throw new DomainException("ID_NEGATIVO");
 
         Id = id;
     }
