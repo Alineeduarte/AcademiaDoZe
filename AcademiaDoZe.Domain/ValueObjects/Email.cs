@@ -32,28 +32,16 @@ public record Email
     private static bool ValidarFormato(string email)
     {
         var partes = email.Split('@');
-
-        if (partes.Length != 2)
-            return false;
-
-        if (string.IsNullOrWhiteSpace(partes[0]))
-            return false;
+        if (partes.Length != 2)return false;
+        if (string.IsNullOrWhiteSpace(partes[0]))return false;
 
         var dominio = partes[1];
-
-        if (string.IsNullOrWhiteSpace(dominio))
-            return false;
-
-        if (dominio.StartsWith('.') || dominio.EndsWith('.'))
-            return false;
+        if (string.IsNullOrWhiteSpace(dominio))return false;
+        if (dominio.StartsWith('.') || dominio.EndsWith('.'))return false;
 
         var labels = dominio.Split('.');
-
-        if (labels.Length < 2)
-            return false;
-
-        if (labels.Any(l => string.IsNullOrWhiteSpace(l)))
-            return false;
+        if (labels.Length < 2)return false;
+        if (labels.Any(l => string.IsNullOrWhiteSpace(l)))return false;
 
         return true;
     }

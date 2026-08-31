@@ -1,86 +1,29 @@
 ﻿// Aline Duarte Sutil
 
 using AcademiaDoZe.Domain.Common;
-
 namespace AcademiaDoZe.Domain.Entities;
 
-public class AcessoColaborador : Entity
+public class AcessoColaborador : Entity, IAggregateRoot
 {
-    public Colaborador Colaborador { get; private set; }
-
-    public DateTime DataHoraEntrada { get; private set; }
-
-    public DateTime? DataHoraSaida { get; private set; }
-
-    private AcessoColaborador(
-        int id,
-        Colaborador colaborador,
-        DateTime dataHoraEntrada,
-        DateTime? dataHoraSaida)
-        : base(id)
+    public int ColaboradorId { get; private set; }
+    public DateTime DataHora { get; private set; }
+    private AcessoColaborador(int id, int colaboradorId, DateTime dataHora) : base(id)
     {
-        Colaborador = colaborador;
-        DataHoraEntrada = dataHoraEntrada;
-        DataHoraSaida = dataHoraSaida;
+        ColaboradorId = colaboradorId;
+        DataHora = dataHora;
     }
-
-    public static Result<AcessoColaborador> Criar(
-        int id,
-        Colaborador colaborador,
-        DateTime dataHoraEntrada,
-        DateTime? dataHoraSaida = null)
+    public static Result<AcessoColaborador> Criar(int id, Colaborador colaborador, DateTime dataHora)
     {
-        var notifications =
-            new List<Notification>();
-
+        var notifications = new List<Notification>();
         if (colaborador == null)
-        {
-            notifications.Add(
-                new Notification(
-                    "Colaborador",
-                    "COLABORADOR_OBRIGATORIO"));
-        }
-
-        if (dataHoraEntrada == default)
-        {
-            notifications.Add(
-                new Notification(
-                    "DataHoraEntrada",
-                    "DATA_HORA_ENTRADA_OBRIGATORIA"));
-        }
-
-        if (dataHoraSaida.HasValue &&
-            dataHoraEntrada != default &&
-            dataHoraSaida.Value < dataHoraEntrada)
-        {
-            notifications.Add(
-                new Notification(
-                    "DataHoraSaida",
-                    "DATA_HORA_SAIDA_INVALIDA"));
-        }
-
+            notifications.Add(new Notification("Colaborador", "COLABORADOR_INVALIDO"));
+        if (dataHora.TimeOfDay < new TimeSpan(6, 0, 0) || dataHora.TimeOfDay > new TimeSpan(22, 0, 0))
+            notifications.Add(new Notification("DataHora", "DATA_HORA_INTERVALO_INVALIDO"));
         if (notifications.Count != 0)
-        {
-            return Result<AcessoColaborador>.Failure(
-                notifications);
-        }
-
-        var acesso =
-            new AcessoColaborador(
-                id,
-                colaborador!,
-                dataHoraEntrada,
-                dataHoraSaida);
-
-        return Result<AcessoColaborador>.Success(acesso);
-    }
-
-    public TimeSpan? TempoPermanencia()
-    {
-        if (!DataHoraSaida.HasValue)
-            return null;
-
-        return DataHoraSaida.Value -
-               DataHoraEntrada;
+            return Result<AcessoColaborador>.Failure(notifications);
+        return Result<AcessoColaborador>.Success(new AcessoColaborador(id, colaborador!.Id, dataHora));
     }
 }
+// Dependem da persistência:
+// Validar se já não ultrapassa o limite de: 8 horas se for ctl, 6 horas se for estágio.
+// Na saída, mostrar o tempo que permaneceu na academia, devendo ser somado todos os registros do dia.

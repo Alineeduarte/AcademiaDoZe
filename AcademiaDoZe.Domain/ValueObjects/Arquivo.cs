@@ -1,7 +1,6 @@
 ﻿// Aline Duarte Sutil
 
 using AcademiaDoZe.Domain.Common;
-
 namespace AcademiaDoZe.Domain.ValueObjects;
 
 public record Arquivo
@@ -16,18 +15,13 @@ public record Arquivo
     public static Result<Arquivo> Criar(byte[] conteudo)
     {
         if (conteudo == null)
-            return Result<Arquivo>.Failure(
-                "Arquivo",
-                "ARQUIVO_OBRIGATORIO");
+            return Result<Arquivo>.Failure("Arquivo", "ARQUIVO_OBRIGATORIO");
 
-        const int tamanhoMaximoBytes = 15 * 1024 * 1024;
-
+        const int tamanhoMaximoBytes = 15 * 1024 * 1024; // 15MB
         if (conteudo.Length > tamanhoMaximoBytes)
-            return Result<Arquivo>.Failure(
-                "Arquivo",
-                "ARQUIVO_TIPO_TAMANHO");
+            return Result<Arquivo>.Failure("Arquivo", "ARQUIVO_TIPO_TAMANHO");
 
-        return Result<Arquivo>.Success(
-            new Arquivo(conteudo));
+        // cria e retorna o objeto
+        return Result<Arquivo>.Success(new Arquivo(conteudo));
     }
 }
