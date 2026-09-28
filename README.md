@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="C:\Users\aline\source\repos\AcademiaDoZe\AcademiaDoZe.Presentation.AppMaui\Resources\Images\academiadoze.png" width="250">
-</p>
+
 
 <h1 align="center">Academia do Zé</h1>
 
