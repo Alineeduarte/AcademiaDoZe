@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Aline Duarte Sutil -->
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AcademiaDoZe.Presentation.AppMaui.Views.LogradouroPage"
+             xmlns:vm="clr-namespace:AcademiaDoZe.Presentation.AppMaui.ViewModels"
+             x:DataType="vm:LogradouroViewModel"
+             Title="{Binding Title}"
+             BackgroundColor="#F5F4EF">
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="22"
+                             Spacing="18">
+
+            <!-- TÍTULO -->
+            <Label Text="{Binding Title}"
+                   FontFamily="OutfitBold"
+                   FontSize="30"
+                   TextColor="#3E5147"
+                   Margin="0,5,0,5"/>
+
+
+            <!-- ================= CEP ================= -->
+
+            <Border BackgroundColor="#EEEDE5"
+                    Stroke="#ABB89A"
+                    StrokeThickness="1"
+                    Padding="16">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14"/>
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="8">
+
+                    <Label Text="CEP"
+                           FontFamily="OutfitSemiBold"
+                           FontSize="15"
+                           TextColor="#3E5147"/>
+
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="10">
+
+                        <!-- CAMPO CEP -->
+                        <Border Grid.Column="0"
+                                BackgroundColor="#F5F4EF"
+                                Stroke="#ABB89A"
+                                StrokeThickness="1"
+                                Padding="10,0">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+
+                            <Entry Text="{Binding Logradouro.Cep}"
+                                   Placeholder="00000-000"
+                                   PlaceholderColor="#607466"
+                                   TextColor="#3E5147"
+                                   FontFamily="OutfitRegular"
+                                   FontSize="15"
+                                   Keyboard="Numeric"
+                                   BackgroundColor="Transparent"
+                                   HeightRequest="44"/>
+
+                        </Border>
+
+                        <!-- BUSCAR CEP -->
+                        <Button Grid.Column="1"
+                                Text="Buscar CEP"
+                                Command="{Binding SearchByCepCommand}"
+                                FontFamily="OutfitSemiBold"
+                                FontSize="14"
+                                TextColor="#F5F4EF"
+                                BackgroundColor="#3E5147"
+                                HeightRequest="46"
+                                Padding="18,0"
+                                CornerRadius="14"/>
+
+                    </Grid>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+
+            <!-- ================= DADOS ================= -->
+
+            <Border BackgroundColor="#EEEDE5"
+                    Stroke="#ABB89A"
+                    StrokeThickness="1"
+                    Padding="18">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14"/>
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="14">
+
+                    <!-- ID -->
+                    <Label Text="{Binding Logradouro.Id,
+                                 StringFormat='Logradouro ID: {0}'}"
+                           FontFamily="OutfitSemiBold"
+                           FontSize="19"
+                           TextColor="#3E5147"
+                           Margin="0,0,0,5"/>
+
+
+                    <!-- NOME / RUA -->
+                    <VerticalStackLayout Spacing="5">
+
+                        <Label Text="Nome/Rua"
+                               FontFamily="OutfitSemiBold"
+                               FontSize="14"
+                               TextColor="#3E5147"/>
+
+                        <Border BackgroundColor="#F5F4EF"
+                                Stroke="#ABB89A"
+                                StrokeThickness="1"
+                                Padding="10,0">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+
+                            <Entry Text="{Binding Logradouro.Nome}"
+                                   Placeholder="Digite o nome da rua..."
+                                   PlaceholderColor="#607466"
+                                   TextColor="#3E5147"
+                                   FontFamily="OutfitRegular"
+                                   FontSize="15"
+                                   BackgroundColor="Transparent"
+                                   HeightRequest="44"/>
+
+                        </Border>
+
+                    </VerticalStackLayout>
+
+
+                    <!-- BAIRRO -->
+                    <VerticalStackLayout Spacing="5">
+
+                        <Label Text="Bairro"
+                               FontFamily="OutfitSemiBold"
+                               FontSize="14"
+                               TextColor="#3E5147"/>
+
+                        <Border BackgroundColor="#F5F4EF"
+                                Stroke="#ABB89A"
+                                StrokeThickness="1"
+                                Padding="10,0">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+
+                            <Entry Text="{Binding Logradouro.Bairro}"
+                                   Placeholder="Digite o bairro..."
+                                   PlaceholderColor="#607466"
+                                   TextColor="#3E5147"
+                                   FontFamily="OutfitRegular"
+                                   FontSize="15"
+                                   BackgroundColor="Transparent"
+                                   HeightRequest="44"/>
+
+                        </Border>
+
+                    </VerticalStackLayout>
+
+
+                    <!-- CIDADE -->
+                    <VerticalStackLayout Spacing="5">
+
+                        <Label Text="Cidade"
+                               FontFamily="OutfitSemiBold"
+                               FontSize="14"
+                               TextColor="#3E5147"/>
+
+                        <Border BackgroundColor="#F5F4EF"
+                                Stroke="#ABB89A"
+                                StrokeThickness="1"
+                                Padding="10,0">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+
+                            <Entry Text="{Binding Logradouro.Cidade}"
+                                   Placeholder="Digite a cidade..."
+                                   PlaceholderColor="#607466"
+                                   TextColor="#3E5147"
+                                   FontFamily="OutfitRegular"
+                                   FontSize="15"
+                                   BackgroundColor="Transparent"
+                                   HeightRequest="44"/>
+
+                        </Border>
+
+                    </VerticalStackLayout>
+
+
+                    <!-- ESTADO -->
+                    <VerticalStackLayout Spacing="5">
+
+                        <Label Text="Estado"
+                               FontFamily="OutfitSemiBold"
+                               FontSize="14"
+                               TextColor="#3E5147"/>
+
+                        <Border BackgroundColor="#F5F4EF"
+                                Stroke="#ABB89A"
+                                StrokeThickness="1"
+                                Padding="10,0">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+
+                            <Entry Text="{Binding Logradouro.Estado}"
+                                   Placeholder="Digite o estado..."
+                                   PlaceholderColor="#607466"
+                                   TextColor="#3E5147"
+                                   FontFamily="OutfitRegular"
+                                   FontSize="15"
+                                   BackgroundColor="Transparent"
+                                   HeightRequest="44"
+                                   MaxLength="2"/>
+
+                        </Border>
+
+                    </VerticalStackLayout>
+
+
+                    <!-- PAÍS -->
+                    <VerticalStackLayout Spacing="5">
+
+                        <Label Text="País"
+                               FontFamily="OutfitSemiBold"
+                               FontSize="14"
+                               TextColor="#3E5147"/>
+
+                        <Border BackgroundColor="#F5F4EF"
+                                Stroke="#ABB89A"
+                                StrokeThickness="1"
+                                Padding="10,0">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+
+                            <Entry Text="{Binding Logradouro.Pais}"
+                                   Placeholder="Digite o país..."
+                                   PlaceholderColor="#607466"
+                                   TextColor="#3E5147"
+                                   FontFamily="OutfitRegular"
+                                   FontSize="15"
+                                   BackgroundColor="Transparent"
+                                   HeightRequest="44"/>
+
+                        </Border>
+
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+
+            <!-- ================= BOTÕES ================= -->
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="12"
+                  Margin="0,3,0,15">
+
+                <!-- CANCELAR -->
+                <Button Grid.Column="0"
+                        Text="Cancelar"
+                        Command="{Binding CancelCommand}"
+                        FontFamily="OutfitSemiBold"
+                        FontSize="15"
+                        TextColor="#3E5147"
+                        BackgroundColor="#F5F4EF"
+                        BorderColor="#ABB89A"
+                        BorderWidth="1"
+                        HeightRequest="48"
+                        CornerRadius="14"/>
+
+                <!-- SALVAR -->
+                <Button Grid.Column="1"
+                        Text="Salvar"
+                        Command="{Binding SaveLogradouroCommand}"
+                        FontFamily="OutfitSemiBold"
+                        FontSize="15"
+                        TextColor="#F5F4EF"
+                        BackgroundColor="#3E5147"
+                        HeightRequest="48"
+                        CornerRadius="14"/>
+
+            </Grid>
+
+
+            <!-- ================= LOADING ================= -->
+
+            <ActivityIndicator IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               Color="#3E5147"
+                               HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>  

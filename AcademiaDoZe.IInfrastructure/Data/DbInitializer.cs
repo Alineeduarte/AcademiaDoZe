@@ -36,7 +36,7 @@ public static class DbInitializer
         .FirstOrDefault(r => r.EndsWith(nomeScript, StringComparison.OrdinalIgnoreCase))
         ?? throw new InfrastructureException("SCRIPT_EMBARCADO_NAO_ENCONTRADO", $"Script SQL embarcado '{nomeScript}' não encontrado.");
         using var stream = assembly.GetManifestResourceStream(resourceName)
-        ?? throw new InfrastructureException("ERRO_LEITURA_SCRIPT", $"Erro ao carregar o fluxo do script embarcado '{nomeScript}'.");
+        ?? throw new InfrastructureException("ERRO_LEITURA_SCRIPT", $"Erro ao   carregar o fluxo do script embarcado '{nomeScript}'.");
         using var reader = new StreamReader(stream);
         return reader.ReadToEnd();
     }
