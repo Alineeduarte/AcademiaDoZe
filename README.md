@@ -1,8 +1,8 @@
-<div align="center">
+<p align="center">
+  <img src="AcademiaDoZe.Apresentação.AplicativoMaui/Resources/Images/academiadoze.png" width="250">
+</p>
 
-# 🏋️ Academia do Zé
-
-Sistema desenvolvido em **C# e .NET** para a disciplina de **Desenvolvimento de Sistemas II**, do **4º semestre** do curso de **Sistemas de Informação** da UNIPLAC.
+<h1 align="center">Academia do Zé</h1>
 
 ![C#](https://img.shields.io/badge/C%23-512BD4?style=for-the-badge\&logo=csharp\&logoColor=white)
 ![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge\&logo=dotnet\&logoColor=white)
