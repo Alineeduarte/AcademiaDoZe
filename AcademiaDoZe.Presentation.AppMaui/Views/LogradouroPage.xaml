@@ -7,25 +7,26 @@
              xmlns:vm="clr-namespace:AcademiaDoZe.Presentation.AppMaui.ViewModels"
              x:DataType="vm:LogradouroViewModel"
              Title="{Binding Title}"
-             BackgroundColor="#F5F4EF">
+             BackgroundColor="{AppThemeBinding Light=#F5F4EF, Dark=#181C1A}">
 
     <ScrollView>
 
         <VerticalStackLayout Padding="22"
                              Spacing="18">
 
-            <!-- TÍTULO -->
+            <!-- ================= TÍTULO ================= -->
+
             <Label Text="{Binding Title}"
                    FontFamily="OutfitBold"
                    FontSize="30"
-                   TextColor="#3E5147"
+                   TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
                    Margin="0,5,0,5"/>
 
 
             <!-- ================= CEP ================= -->
 
-            <Border BackgroundColor="#EEEDE5"
-                    Stroke="#ABB89A"
+            <Border BackgroundColor="{AppThemeBinding Light=#EEEDE5, Dark=#202522}"
+                    Stroke="{AppThemeBinding Light=#ABB89A, Dark=#526158}"
                     StrokeThickness="1"
                     Padding="16">
 
@@ -38,15 +39,16 @@
                     <Label Text="CEP"
                            FontFamily="OutfitSemiBold"
                            FontSize="15"
-                           TextColor="#3E5147"/>
+                           TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
 
                     <Grid ColumnDefinitions="*,Auto"
                           ColumnSpacing="10">
 
                         <!-- CAMPO CEP -->
+
                         <Border Grid.Column="0"
-                                BackgroundColor="#F5F4EF"
-                                Stroke="#ABB89A"
+                                BackgroundColor="{AppThemeBinding Light=#F5F4EF, Dark=#181C1A}"
+                                Stroke="{AppThemeBinding Light=#ABB89A, Dark=#526158}"
                                 StrokeThickness="1"
                                 Padding="10,0">
 
@@ -56,8 +58,8 @@
 
                             <Entry Text="{Binding Logradouro.Cep}"
                                    Placeholder="00000-000"
-                                   PlaceholderColor="#607466"
-                                   TextColor="#3E5147"
+                                   PlaceholderColor="{AppThemeBinding Light=#607466, Dark=#AFC5B5}"
+                                   TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
                                    FontFamily="OutfitRegular"
                                    FontSize="15"
                                    Keyboard="Numeric"
@@ -66,17 +68,27 @@
 
                         </Border>
 
+
                         <!-- BUSCAR CEP -->
+
                         <Button Grid.Column="1"
                                 Text="Buscar CEP"
                                 Command="{Binding SearchByCepCommand}"
                                 FontFamily="OutfitSemiBold"
                                 FontSize="14"
                                 TextColor="#F5F4EF"
-                                BackgroundColor="#3E5147"
+                                BackgroundColor="{AppThemeBinding Light=#3E5147, Dark=#526158}"
                                 HeightRequest="46"
                                 Padding="18,0"
-                                CornerRadius="14"/>
+                                CornerRadius="14">
+
+                            <Button.ImageSource>
+                                <FontImageSource FontFamily="MaterialIcons"
+                                                 Glyph="&#xe8b6;"
+                                                 Color="#F5F4EF"/>
+                            </Button.ImageSource>
+
+                        </Button>
 
                     </Grid>
 
@@ -87,8 +99,8 @@
 
             <!-- ================= DADOS ================= -->
 
-            <Border BackgroundColor="#EEEDE5"
-                    Stroke="#ABB89A"
+            <Border BackgroundColor="{AppThemeBinding Light=#EEEDE5, Dark=#202522}"
+                    Stroke="{AppThemeBinding Light=#ABB89A, Dark=#526158}"
                     StrokeThickness="1"
                     Padding="18">
 
@@ -98,25 +110,28 @@
 
                 <VerticalStackLayout Spacing="14">
 
+
                     <!-- ID -->
+
                     <Label Text="{Binding Logradouro.Id,
                                  StringFormat='Logradouro ID: {0}'}"
                            FontFamily="OutfitSemiBold"
                            FontSize="19"
-                           TextColor="#3E5147"
+                           TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
                            Margin="0,0,0,5"/>
 
 
-                    <!-- NOME / RUA -->
+                    <!-- ================= NOME / RUA ================= -->
+
                     <VerticalStackLayout Spacing="5">
 
                         <Label Text="Nome/Rua"
                                FontFamily="OutfitSemiBold"
                                FontSize="14"
-                               TextColor="#3E5147"/>
+                               TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
 
-                        <Border BackgroundColor="#F5F4EF"
-                                Stroke="#ABB89A"
+                        <Border BackgroundColor="{AppThemeBinding Light=#F5F4EF, Dark=#181C1A}"
+                                Stroke="{AppThemeBinding Light=#ABB89A, Dark=#526158}"
                                 StrokeThickness="1"
                                 Padding="10,0">
 
@@ -126,8 +141,8 @@
 
                             <Entry Text="{Binding Logradouro.Nome}"
                                    Placeholder="Digite o nome da rua..."
-                                   PlaceholderColor="#607466"
-                                   TextColor="#3E5147"
+                                   PlaceholderColor="{AppThemeBinding Light=#607466, Dark=#AFC5B5}"
+                                   TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
                                    FontFamily="OutfitRegular"
                                    FontSize="15"
                                    BackgroundColor="Transparent"
@@ -138,16 +153,17 @@
                     </VerticalStackLayout>
 
 
-                    <!-- BAIRRO -->
+                    <!-- ================= BAIRRO ================= -->
+
                     <VerticalStackLayout Spacing="5">
 
                         <Label Text="Bairro"
                                FontFamily="OutfitSemiBold"
                                FontSize="14"
-                               TextColor="#3E5147"/>
+                               TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
 
-                        <Border BackgroundColor="#F5F4EF"
-                                Stroke="#ABB89A"
+                        <Border BackgroundColor="{AppThemeBinding Light=#F5F4EF, Dark=#181C1A}"
+                                Stroke="{AppThemeBinding Light=#ABB89A, Dark=#526158}"
                                 StrokeThickness="1"
                                 Padding="10,0">
 
@@ -157,8 +173,8 @@
 
                             <Entry Text="{Binding Logradouro.Bairro}"
                                    Placeholder="Digite o bairro..."
-                                   PlaceholderColor="#607466"
-                                   TextColor="#3E5147"
+                                   PlaceholderColor="{AppThemeBinding Light=#607466, Dark=#AFC5B5}"
+                                   TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
                                    FontFamily="OutfitRegular"
                                    FontSize="15"
                                    BackgroundColor="Transparent"
@@ -169,16 +185,17 @@
                     </VerticalStackLayout>
 
 
-                    <!-- CIDADE -->
+                    <!-- ================= CIDADE ================= -->
+
                     <VerticalStackLayout Spacing="5">
 
                         <Label Text="Cidade"
                                FontFamily="OutfitSemiBold"
                                FontSize="14"
-                               TextColor="#3E5147"/>
+                               TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
 
-                        <Border BackgroundColor="#F5F4EF"
-                                Stroke="#ABB89A"
+                        <Border BackgroundColor="{AppThemeBinding Light=#F5F4EF, Dark=#181C1A}"
+                                Stroke="{AppThemeBinding Light=#ABB89A, Dark=#526158}"
                                 StrokeThickness="1"
                                 Padding="10,0">
 
@@ -188,8 +205,8 @@
 
                             <Entry Text="{Binding Logradouro.Cidade}"
                                    Placeholder="Digite a cidade..."
-                                   PlaceholderColor="#607466"
-                                   TextColor="#3E5147"
+                                   PlaceholderColor="{AppThemeBinding Light=#607466, Dark=#AFC5B5}"
+                                   TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
                                    FontFamily="OutfitRegular"
                                    FontSize="15"
                                    BackgroundColor="Transparent"
@@ -200,16 +217,17 @@
                     </VerticalStackLayout>
 
 
-                    <!-- ESTADO -->
+                    <!-- ================= ESTADO ================= -->
+
                     <VerticalStackLayout Spacing="5">
 
                         <Label Text="Estado"
                                FontFamily="OutfitSemiBold"
                                FontSize="14"
-                               TextColor="#3E5147"/>
+                               TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
 
-                        <Border BackgroundColor="#F5F4EF"
-                                Stroke="#ABB89A"
+                        <Border BackgroundColor="{AppThemeBinding Light=#F5F4EF, Dark=#181C1A}"
+                                Stroke="{AppThemeBinding Light=#ABB89A, Dark=#526158}"
                                 StrokeThickness="1"
                                 Padding="10,0">
 
@@ -219,8 +237,8 @@
 
                             <Entry Text="{Binding Logradouro.Estado}"
                                    Placeholder="Digite o estado..."
-                                   PlaceholderColor="#607466"
-                                   TextColor="#3E5147"
+                                   PlaceholderColor="{AppThemeBinding Light=#607466, Dark=#AFC5B5}"
+                                   TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
                                    FontFamily="OutfitRegular"
                                    FontSize="15"
                                    BackgroundColor="Transparent"
@@ -232,16 +250,17 @@
                     </VerticalStackLayout>
 
 
-                    <!-- PAÍS -->
+                    <!-- ================= PAÍS ================= -->
+
                     <VerticalStackLayout Spacing="5">
 
                         <Label Text="País"
                                FontFamily="OutfitSemiBold"
                                FontSize="14"
-                               TextColor="#3E5147"/>
+                               TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
 
-                        <Border BackgroundColor="#F5F4EF"
-                                Stroke="#ABB89A"
+                        <Border BackgroundColor="{AppThemeBinding Light=#F5F4EF, Dark=#181C1A}"
+                                Stroke="{AppThemeBinding Light=#ABB89A, Dark=#526158}"
                                 StrokeThickness="1"
                                 Padding="10,0">
 
@@ -251,8 +270,8 @@
 
                             <Entry Text="{Binding Logradouro.Pais}"
                                    Placeholder="Digite o país..."
-                                   PlaceholderColor="#607466"
-                                   TextColor="#3E5147"
+                                   PlaceholderColor="{AppThemeBinding Light=#607466, Dark=#AFC5B5}"
+                                   TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
                                    FontFamily="OutfitRegular"
                                    FontSize="15"
                                    BackgroundColor="Transparent"
@@ -274,28 +293,47 @@
                   Margin="0,3,0,15">
 
                 <!-- CANCELAR -->
+
                 <Button Grid.Column="0"
                         Text="Cancelar"
                         Command="{Binding CancelCommand}"
                         FontFamily="OutfitSemiBold"
                         FontSize="15"
-                        TextColor="#3E5147"
-                        BackgroundColor="#F5F4EF"
-                        BorderColor="#ABB89A"
+                        TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
+                        BackgroundColor="{AppThemeBinding Light=#F5F4EF, Dark=#202522}"
+                        BorderColor="{AppThemeBinding Light=#ABB89A, Dark=#526158}"
                         BorderWidth="1"
                         HeightRequest="48"
-                        CornerRadius="14"/>
+                        CornerRadius="14">
+
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="&#xe5c9;"
+                                         Color="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
+                    </Button.ImageSource>
+
+                </Button>
+
 
                 <!-- SALVAR -->
+
                 <Button Grid.Column="1"
                         Text="Salvar"
                         Command="{Binding SaveLogradouroCommand}"
                         FontFamily="OutfitSemiBold"
                         FontSize="15"
                         TextColor="#F5F4EF"
-                        BackgroundColor="#3E5147"
+                        BackgroundColor="{AppThemeBinding Light=#3E5147, Dark=#526158}"
                         HeightRequest="48"
-                        CornerRadius="14"/>
+                        CornerRadius="14">
+
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="MaterialIcons"
+                                         Glyph="&#xe161;"
+                                         Color="#F5F4EF"/>
+                    </Button.ImageSource>
+
+                </Button>
 
             </Grid>
 
@@ -304,11 +342,11 @@
 
             <ActivityIndicator IsVisible="{Binding IsBusy}"
                                IsRunning="{Binding IsBusy}"
-                               Color="#3E5147"
+                               Color="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
                                HorizontalOptions="Center"/>
 
         </VerticalStackLayout>
 
     </ScrollView>
 
-</ContentPage>  
+</ContentPage>

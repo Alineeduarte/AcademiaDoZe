@@ -31,13 +31,13 @@
 
                 <!-- Entry de busca -->
                 <Entry Grid.Column="2"
-                    Text="{Binding SearchText}"
-                    Placeholder="Digite o valor..."
-                    TextColor="#3E5147"
-                    PlaceholderColor="#3E5147"
-                    FontFamily="OutfitRegular"
-                    HeightRequest="40"
-                    VerticalOptions="Center"/>
+                        Text="{Binding SearchText}"
+                        Placeholder="Digite o valor..."
+                        TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
+                        PlaceholderColor="{AppThemeBinding Light=#3E5147, Dark=#AFC5B5}"
+                        FontFamily="OutfitRegular"
+                        HeightRequest="40"
+                        VerticalOptions="Center"/>
 
                 <!-- Botão de busca -->
                 <Button Grid.Column="4"

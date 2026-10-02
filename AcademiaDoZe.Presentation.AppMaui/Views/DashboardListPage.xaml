@@ -7,7 +7,7 @@
              xmlns:vm="clr-namespace:AcademiaDoZe.Presentation.AppMaui.ViewModels"
              x:DataType="vm:DashboardListViewModel"
              Title="{Binding Title}"
-             BackgroundColor="#F5F4EF">
+             BackgroundColor="{AppThemeBinding Light=#F5F4EF, Dark=#181C1A}">
 
     <ScrollView>
 
@@ -20,24 +20,31 @@
                          Margin="0,0,0,20">
 
                 <!-- Logo -->
-                <Image Source="academiadoze.png"
-                       HeightRequest="300"
+                <Image HeightRequest="300"
                        WidthRequest="300"
                        Aspect="AspectFit"
-                       HorizontalOptions="Center" />
+                       HorizontalOptions="Center">
+
+                    <Image.Source>
+                        <x:AppThemeBinding
+                            Light="academiadoze_claro.png"
+                            Dark="academiadoze_escuro.png" />
+                    </Image.Source>
+
+                </Image>
 
                 <!-- Título -->
                 <Label Text="Academia do Zé"
                        FontFamily="OutfitBold"
                        FontSize="42"
-                       TextColor="#3E5147"
+                       TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
                        HorizontalOptions="Center" />
 
                 <!-- Subtítulo -->
                 <Label Text="Sistema de Gerenciamento"
                        FontFamily="OutfitRegular"
                        FontSize="22"
-                       TextColor="#242424"
+                       TextColor="{AppThemeBinding Light=#242424, Dark=#AFC5B5}"
                        HorizontalOptions="Center" />
 
             </StackLayout>
@@ -51,13 +58,13 @@
                   RowSpacing="15"
                   ColumnSpacing="15">
 
-                <!-- Card Logradouros -->
+                <!-- ================= LOGRADOUROS ================= -->
 
                 <Border Grid.Row="0"
                         Grid.Column="0"
                         Style="{StaticResource CardBorder}"
                         Margin="15,10"
-                        BackgroundColor="#3E5147">
+                        BackgroundColor="{AppThemeBinding Light=#3E5147, Dark=#2C3832}">
 
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer
@@ -66,12 +73,19 @@
 
                     <StackLayout Spacing="10">
 
+                        <Label FontFamily="MaterialIcons"
+                               Text="&#xe7f1;"
+                               Style="{StaticResource SubHeadline}"
+                               TextColor="{AppThemeBinding Light=#F1F5EE, Dark=#DCE8DF}"
+                               HorizontalTextAlignment="Center" />
+
                         <Label Text="{Binding TotalLogradouros}"
                                Style="{StaticResource SubHeadline}"
-                               TextColor="#F5F4EF" />
+                               TextColor="{AppThemeBinding Light=#F1F5EE, Dark=#DCE8DF}"
+                               HorizontalTextAlignment="Center" />
 
                         <Label Text="Logradouros"
-                               TextColor="#F5F4EF"
+                               TextColor="{AppThemeBinding Light=#F1F5EE, Dark=#DCE8DF}"
                                HorizontalTextAlignment="Center" />
 
                     </StackLayout>
@@ -79,13 +93,13 @@
                 </Border>
 
 
-                <!-- Card Alunos -->
+                <!-- ================= ALUNOS ================= -->
 
                 <Border Grid.Row="0"
                         Grid.Column="1"
                         Style="{StaticResource CardBorder}"
                         Margin="15,10"
-                        BackgroundColor="#3E5147">
+                        BackgroundColor="{AppThemeBinding Light=#3E5147, Dark=#2C3832}">
 
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer
@@ -94,12 +108,19 @@
 
                     <StackLayout Spacing="10">
 
+                        <Label FontFamily="MaterialIcons"
+                               Text="&#xe80c;"
+                               Style="{StaticResource SubHeadline}"
+                               TextColor="{AppThemeBinding Light=#F1F5EE, Dark=#DCE8DF}"
+                               HorizontalTextAlignment="Center" />
+
                         <Label Text="{Binding TotalAlunos}"
                                Style="{StaticResource SubHeadline}"
-                               TextColor="#F1F5EE" />
+                               TextColor="{AppThemeBinding Light=#F1F5EE, Dark=#DCE8DF}"
+                               HorizontalTextAlignment="Center" />
 
                         <Label Text="Alunos"
-                               TextColor="#F5F4EF"
+                               TextColor="{AppThemeBinding Light=#F1F5EE, Dark=#DCE8DF}"
                                HorizontalTextAlignment="Center" />
 
                     </StackLayout>
@@ -107,13 +128,13 @@
                 </Border>
 
 
-                <!-- Card Colaboradores -->
+                <!-- ================= COLABORADORES ================= -->
 
                 <Border Grid.Row="1"
                         Grid.Column="0"
                         Style="{StaticResource CardBorder}"
                         Margin="15,10"
-                        BackgroundColor="#3E5147">
+                        BackgroundColor="{AppThemeBinding Light=#3E5147, Dark=#2C3832}">
 
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer
@@ -122,12 +143,19 @@
 
                     <StackLayout Spacing="10">
 
+                        <Label FontFamily="MaterialIcons"
+                               Text="&#xea67;"
+                               Style="{StaticResource SubHeadline}"
+                               TextColor="{AppThemeBinding Light=#F1F5EE, Dark=#DCE8DF}"
+                               HorizontalTextAlignment="Center" />
+
                         <Label Text="{Binding TotalColaboradores}"
                                Style="{StaticResource SubHeadline}"
-                               TextColor="#F1F5EE" />
+                               TextColor="{AppThemeBinding Light=#F1F5EE, Dark=#DCE8DF}"
+                               HorizontalTextAlignment="Center" />
 
                         <Label Text="Colaboradores"
-                               TextColor="#F5F4EF"
+                               TextColor="{AppThemeBinding Light=#F1F5EE, Dark=#DCE8DF}"
                                HorizontalTextAlignment="Center" />
 
                     </StackLayout>
@@ -135,13 +163,13 @@
                 </Border>
 
 
-                <!-- Card Matrículas -->
+                <!-- ================= MATRÍCULAS ================= -->
 
                 <Border Grid.Row="1"
                         Grid.Column="1"
                         Style="{StaticResource CardBorder}"
                         Margin="15,10"
-                        BackgroundColor="#3E5147">
+                        BackgroundColor="{AppThemeBinding Light=#3E5147, Dark=#2C3832}">
 
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer
@@ -150,12 +178,19 @@
 
                     <StackLayout Spacing="10">
 
+                        <Label FontFamily="MaterialIcons"
+                               Text="&#xefec;"
+                               Style="{StaticResource SubHeadline}"
+                               TextColor="{AppThemeBinding Light=#F1F5EE, Dark=#DCE8DF}"
+                               HorizontalTextAlignment="Center" />
+
                         <Label Text="{Binding TotalMatriculas}"
                                Style="{StaticResource SubHeadline}"
-                               TextColor="#F1F5EE" />
+                               TextColor="{AppThemeBinding Light=#F1F5EE, Dark=#DCE8DF}"
+                               HorizontalTextAlignment="Center" />
 
                         <Label Text="Matrículas"
-                               TextColor="#F5F4EF"
+                               TextColor="{AppThemeBinding Light=#F1F5EE, Dark=#DCE8DF}"
                                HorizontalTextAlignment="Center" />
 
                     </StackLayout>

@@ -19,6 +19,7 @@ public static class MauiProgram
 
             fonts.AddFont("Outfit-Regular.ttf", "OutfitRegular");
             fonts.AddFont("Outfit-Bold.ttf", "OutfitBold");
+            fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons");
         });
         // Configurar serviços da aplicação e repositórios
         ConfigurationHelper.ConfigureServices(builder.Services);
@@ -33,6 +34,8 @@ public static class MauiProgram
         builder.Services.AddTransient<DashboardListPage>();
         builder.Services.AddTransient<LogradouroListPage>();
         builder.Services.AddTransient<LogradouroPage>();
+        builder.Services.AddTransient<ConfigPage>();
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
