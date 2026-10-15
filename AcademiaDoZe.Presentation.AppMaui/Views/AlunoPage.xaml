@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Aline Duarte Sutil -->
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:AcademiaDoZe.Presentation.AppMaui.ViewModels"
+    xmlns:converters="clr-namespace:AcademiaDoZe.Presentation.AppMaui.Converters"
+    x:Class="AcademiaDoZe.Presentation.AppMaui.Views.AlunoPage"
+    x:DataType="vm:AlunoViewModel"
+    Title="{Binding Title}"
+    BackgroundColor="{AppThemeBinding Light=#F5F4EF, Dark=#181C1A}">
+
+    <ContentPage.Resources>
+        <converters:FotoToImageSourceConverter
+            x:Key="FotoConverter"/>
+
+        <converters:DateOnlyToDateTimeConverter
+            x:Key="DateOnlyConverter"/>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="14"
+            Padding="15,15,15,25">
+
+            <!-- Cabeçalho -->
+            <VerticalStackLayout
+                Spacing="4"
+                Margin="3,0">
+
+                <Label
+                    Text="{Binding Title}"
+                    FontSize="26"
+                    FontAttributes="Bold"
+                    TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
+
+                <Label
+                    Text="Preencha os dados do aluno e selecione uma foto."
+                    FontSize="13"
+                    TextColor="{AppThemeBinding Light=#656E66, Dark=#B4C1B8}"/>
+
+            </VerticalStackLayout>
+
+            <!-- CPF -->
+            <Border
+                Padding="16"
+                StrokeThickness="1"
+                Stroke="{AppThemeBinding Light=#DCE5DC, Dark=#36443B}"
+                StrokeShape="RoundRectangle 15"
+                BackgroundColor="{AppThemeBinding Light=White, Dark=#242C27}">
+
+                <VerticalStackLayout Spacing="8">
+
+                    <Label
+                        Text="CPF"
+                        FontAttributes="Bold"
+                        TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
+
+                    <Grid
+                        ColumnDefinitions="*,Auto"
+                        ColumnSpacing="8">
+
+                        <Entry
+                            Grid.Column="0"
+                            Text="{Binding Aluno.Cpf}"
+                            Placeholder="000.000.000-00"
+                            Keyboard="Numeric"
+                            MaxLength="14"
+                            ClearButtonVisibility="WhileEditing"
+                            ReturnCommand="{Binding SearchByCpfCommand}"/>
+
+                        <Button
+                            Grid.Column="1"
+                            Text="Buscar CPF"
+                            Command="{Binding SearchByCpfCommand}"
+                            BackgroundColor="#3E5147"
+                            TextColor="White"
+                            CornerRadius="10"/>
+
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Dados pessoais -->
+            <Border
+                Padding="16"
+                StrokeThickness="1"
+                Stroke="{AppThemeBinding Light=#DCE5DC, Dark=#36443B}"
+                StrokeShape="RoundRectangle 15"
+                BackgroundColor="{AppThemeBinding Light=White, Dark=#242C27}">
+
+                <VerticalStackLayout Spacing="13">
+
+                    <Label
+                        Text="Dados pessoais"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
+
+                    <Label
+                        Text="{Binding Aluno.Id, StringFormat='Aluno ID: {0}'}"
+                        IsVisible="{Binding IsEditMode}"
+                        FontSize="12"/>
+
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="Nome completo"/>
+
+                        <Entry
+                            Text="{Binding Aluno.Nome}"
+                            Placeholder="Nome e sobrenome"
+                            MaxLength="150"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="Nascimento"/>
+
+                        <DatePicker
+                            Date="{Binding Aluno.DataNascimento, Converter={StaticResource DateOnlyConverter}, Mode=TwoWay}"
+                            Format="dd/MM/yyyy"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="Telefone"/>
+
+                        <Entry
+                            Text="{Binding Aluno.Telefone}"
+                            Placeholder="(00) 00000-0000"
+                            Keyboard="Telephone"
+                            MaxLength="15"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="E-mail (opcional)"/>
+
+                        <Entry
+                            Text="{Binding Aluno.Email}"
+                            Placeholder="aluno@email.com"
+                            Keyboard="Email"
+                            MaxLength="100"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="Senha"/>
+
+                        <Entry
+                            Text="{Binding Aluno.Senha}"
+                            Placeholder="Mínimo 6 caracteres e uma maiúscula"
+                            IsPassword="True"
+                            MaxLength="50"/>
+
+                        <Label
+                            Text="Deixe em branco para manter a senha atual."
+                            IsVisible="{Binding IsEditMode}"
+                            FontSize="11"
+                            TextColor="{AppThemeBinding Light=#6A756B, Dark=#B4C1B8}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="Confirmar senha"/>
+
+                        <Entry
+                            Text="{Binding ConfirmarSenha}"
+                            Placeholder="Repita a senha"
+                            IsPassword="True"
+                            MaxLength="50"/>
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Foto do aluno -->
+            <Border
+                Padding="16"
+                StrokeThickness="1"
+                Stroke="{AppThemeBinding Light=#DCE5DC, Dark=#36443B}"
+                StrokeShape="RoundRectangle 15"
+                BackgroundColor="{AppThemeBinding Light=White, Dark=#242C27}">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label
+                        Text="Foto do aluno"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
+
+                    <Image
+                        Source="{Binding Aluno.Foto, Converter={StaticResource FotoConverter}}"
+                        HeightRequest="155"
+                        WidthRequest="155"
+                        BackgroundColor="{AppThemeBinding Light=#E8EFE9, Dark=#38453D}"
+                        HorizontalOptions="Center"
+                        Aspect="AspectFill"/>
+
+                    <Button
+                        Text="Escolher foto / Tirar foto"
+                        Command="{Binding SelecionarFotoCommand}"
+                        BackgroundColor="#3E5147"
+                        TextColor="White"
+                        CornerRadius="10"/>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Endereço -->
+            <Border
+                Padding="16"
+                StrokeThickness="1"
+                Stroke="{AppThemeBinding Light=#DCE5DC, Dark=#36443B}"
+                StrokeShape="RoundRectangle 15"
+                BackgroundColor="{AppThemeBinding Light=White, Dark=#242C27}">
+
+                <VerticalStackLayout Spacing="13">
+
+                    <Label
+                        Text="Endereço"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
+
+                    <Grid
+                        ColumnDefinitions="*,Auto"
+                        ColumnSpacing="8">
+
+                        <Entry
+                            Grid.Column="0"
+                            Text="{Binding Aluno.Endereco.Cep}"
+                            Placeholder="CEP (8 dígitos)"
+                            Keyboard="Numeric"
+                            MaxLength="9"
+                            ReturnCommand="{Binding SearchByCepCommand}"/>
+
+                        <Button
+                            Grid.Column="1"
+                            Text="Buscar CEP"
+                            Command="{Binding SearchByCepCommand}"
+                            BackgroundColor="#3E5147"
+                            TextColor="White"
+                            CornerRadius="10"/>
+
+                    </Grid>
+
+                    <Label
+                        Text="Antes, cadastre o CEP na tela de Logradouros."
+                        IsVisible="{Binding HasNoEnderecoVinculado}"
+                        TextColor="{AppThemeBinding Light=#A06435, Dark=#EAC18E}"
+                        FontSize="12"/>
+
+                    <VerticalStackLayout
+                        IsVisible="{Binding HasEnderecoVinculado}"
+                        Spacing="4">
+
+                        <Label
+                            Text="Logradouro vinculado"
+                            FontAttributes="Bold"
+                            TextColor="{AppThemeBinding Light=#3E5147, Dark=#A8C686}"/>
+
+                        <Label
+                            Text="{Binding Aluno.Endereco.Nome, StringFormat='Rua: {0}'}"/>
+
+                        <Label
+                            Text="{Binding Aluno.Endereco.Bairro, StringFormat='Bairro: {0}'}"/>
+
+                        <Label
+                            Text="{Binding Aluno.Endereco.Cidade, StringFormat='Cidade: {0}'}"/>
+
+                        <Label
+                            Text="{Binding Aluno.Endereco.Estado, StringFormat='Estado: {0}'}"/>
+
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="Número"/>
+
+                        <Entry
+                            Text="{Binding Aluno.Numero}"
+                            Placeholder="Número"
+                            MaxLength="20"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="Complemento (opcional)"/>
+
+                        <Entry
+                            Text="{Binding Aluno.Complemento}"
+                            Placeholder="Apartamento, bloco, referência..."
+                            MaxLength="50"/>
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Ações -->
+            <Grid
+                ColumnDefinitions="*,*"
+                ColumnSpacing="10"
+                Margin="0,5,0,0">
+
+                <Button
+                    Grid.Column="0"
+                    Text="Cancelar"
+                    Command="{Binding CancelCommand}"
+                    BackgroundColor="#D9E0DA"
+                    TextColor="#24372B"
+                    CornerRadius="12"
+                    HeightRequest="52"/>
+
+                <Button
+                    Grid.Column="1"
+                    Text="Salvar aluno"
+                    Command="{Binding SaveAlunoCommand}"
+                    BackgroundColor="#3E5147"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="52"/>
+
+            </Grid>
+
+            <ActivityIndicator
+                IsVisible="{Binding IsBusy}"
+                IsRunning="{Binding IsBusy}"
+                Color="#3E5147"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

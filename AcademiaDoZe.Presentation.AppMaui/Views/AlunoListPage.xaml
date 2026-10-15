@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Aline Duarte Sutil -->
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:AcademiaDoZe.Presentation.AppMaui.ViewModels"
+    xmlns:dto="clr-namespace:AcademiaDoZe.Application.DTOs;assembly=AcademiaDoZe.Application"
+    xmlns:converters="clr-namespace:AcademiaDoZe.Presentation.AppMaui.Converters"
+    x:Class="AcademiaDoZe.Presentation.AppMaui.Views.AlunoListPage"
+    x:DataType="vm:AlunoListViewModel"
+    Title="{Binding Title}"
+    BackgroundColor="{AppThemeBinding Light=#F5F4EF, Dark=#181C1A}">
+
+    <ContentPage.Resources>
+
+        <converters:FotoToImageSourceConverter
+            x:Key="FotoConverter" />
+
+        <DataTemplate
+            x:Key="AlunoItemTemplate"
+            x:DataType="dto:AlunoDto">
+
+            <Grid Padding="5">
+
+                <Border
+                    Padding="15"
+                    Margin="5"
+                    StrokeShape="RoundRectangle 16"
+                    Stroke="{AppThemeBinding Light=#DCE5DC, Dark=#36443B}"
+                    StrokeThickness="1"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#242C27}">
+
+                    <Grid
+                        RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                        ColumnDefinitions="*,Auto,Auto"
+                        ColumnSpacing="8"
+                        RowSpacing="8">
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text="{Binding Nome}"
+                            FontSize="17"
+                            FontAttributes="Bold"
+                            TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
+                            LineBreakMode="TailTruncation"/>
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="{Binding Cpf, StringFormat='CPF: {0}'}"
+                            LineBreakMode="TailTruncation"/>
+
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Text="{Binding Telefone, StringFormat='Telefone: {0}'}"
+                            LineBreakMode="TailTruncation"/>
+
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Text="{Binding Email, StringFormat='E-mail: {0}'}"
+                            LineBreakMode="TailTruncation"/>
+
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Text="{Binding Endereco.Cidade, StringFormat='Cidade: {0}'}"
+                            LineBreakMode="TailTruncation"/>
+
+                        <Image
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Grid.RowSpan="4"
+                            Source="{Binding Foto, Converter={StaticResource FotoConverter}}"
+                            Aspect="AspectFill"
+                            BackgroundColor="{AppThemeBinding Light=#E8EFE9, Dark=#38453D}"
+                            HeightRequest="95"
+                            WidthRequest="95"/>
+
+                        <!-- Botão editar -->
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Text=""
+                            BackgroundColor="#A8C686"
+                            TextColor="White"
+                            WidthRequest="46"
+                            HeightRequest="44"
+                            CornerRadius="12"
+                            Clicked="OnEditButtonClicked">
+
+                            <Button.ImageSource>
+                                <FontImageSource
+                                    FontFamily="MaterialIcons"
+                                    Glyph="&#xe3c9;"
+                                    Color="White"/>
+                            </Button.ImageSource>
+
+                        </Button>
+
+                        <!-- Botão excluir -->
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Text=""
+                            BackgroundColor="#B65A50"
+                            TextColor="White"
+                            WidthRequest="46"
+                            HeightRequest="44"
+                            CornerRadius="12"
+                            Clicked="OnDeleteButtonClicked">
+
+                            <Button.ImageSource>
+                                <FontImageSource
+                                    FontFamily="MaterialIcons"
+                                    Glyph="&#xe872;"
+                                    Color="White"/>
+                            </Button.ImageSource>
+
+                        </Button>
+
+                    </Grid>
+                </Border>
+            </Grid>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Área de busca -->
+        <Border
+            Grid.Row="0"
+            Margin="15,12,15,5"
+            Padding="12"
+            StrokeShape="RoundRectangle 14"
+            Stroke="{AppThemeBinding Light=#DCE5DC, Dark=#36443B}"
+            BackgroundColor="{AppThemeBinding Light=White, Dark=#242C27}">
+
+            <VerticalStackLayout Spacing="8">
+
+                <Label
+                    Text="Buscar aluno"
+                    TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"
+                    FontAttributes="Bold"/>
+
+                <Grid
+                    ColumnDefinitions="110,*,Auto"
+                    ColumnSpacing="8">
+
+                    <Picker
+                        Grid.Column="0"
+                        Title="Filtro"
+                        ItemsSource="{Binding FilterTypes}"
+                        SelectedItem="{Binding SelectedFilterType}"
+                        VerticalOptions="Center"/>
+
+                    <Entry
+                        Grid.Column="1"
+                        Text="{Binding SearchText}"
+                        Placeholder="Digite aqui..."
+                        ClearButtonVisibility="WhileEditing"
+                        ReturnCommand="{Binding SearchAlunosCommand}"/>
+
+                    <Button
+                        Grid.Column="2"
+                        Text="Buscar"
+                        Command="{Binding SearchAlunosCommand}"
+                        BackgroundColor="#3E5147"
+                        TextColor="White"
+                        CornerRadius="10"/>
+
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Lista de alunos -->
+        <Grid Grid.Row="1">
+
+            <RefreshView
+                IsRefreshing="{Binding IsRefreshing}"
+                Command="{Binding RefreshCommand}">
+
+                <CollectionView
+                    ItemsSource="{Binding Alunos}"
+                    SelectionMode="None"
+                    Margin="10">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical">
+
+                            <GridItemsLayout.Span>
+                                <OnIdiom x:TypeArguments="x:Int32">
+                                    <OnIdiom.Phone>1</OnIdiom.Phone>
+                                    <OnIdiom.Tablet>2</OnIdiom.Tablet>
+                                    <OnIdiom.Desktop>2</OnIdiom.Desktop>
+                                    <OnIdiom.TV>3</OnIdiom.TV>
+                                    <OnIdiom.Default>1</OnIdiom.Default>
+                                </OnIdiom>
+                            </GridItemsLayout.Span>
+
+                        </GridItemsLayout>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <StaticResource Key="AlunoItemTemplate"/>
+                    </CollectionView.ItemTemplate>
+
+                    <CollectionView.EmptyView>
+
+                        <VerticalStackLayout
+                            VerticalOptions="Center"
+                            Padding="30"
+                            Spacing="15">
+
+                            <Label
+                                Text="Nenhum aluno encontrado"
+                                HorizontalOptions="Center"
+                                TextColor="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}"/>
+
+                            <Button
+                                Text="Cadastrar aluno"
+                                Command="{Binding AddAlunoCommand}"
+                                BackgroundColor="#3E5147"
+                                TextColor="White"
+                                HorizontalOptions="Center"/>
+
+                        </VerticalStackLayout>
+
+                    </CollectionView.EmptyView>
+
+                </CollectionView>
+            </RefreshView>
+
+            <!-- Botão adicionar aluno -->
+            <Button
+                Text="+"
+                FontSize="28"
+                FontAttributes="Bold"
+                Command="{Binding AddAlunoCommand}"
+                BackgroundColor="#3E5147"
+                TextColor="White"
+                WidthRequest="60"
+                HeightRequest="60"
+                CornerRadius="30"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="20">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Offset="0,4"
+                        Radius="8"
+                        Opacity="0.25"/>
+                </Button.Shadow>
+
+            </Button>
+        </Grid>
+
+        <ActivityIndicator
+            Grid.RowSpan="2"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Color="#3E5147"/>
+
+    </Grid>
+</ContentPage>

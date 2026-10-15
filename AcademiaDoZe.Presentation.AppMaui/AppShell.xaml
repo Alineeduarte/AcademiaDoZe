@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!--Aline Duarte Sutil -->
+<!-- Aline Duarte Sutil -->
 <Shell
-x:Class="AcademiaDoZe.Presentation.AppMaui.AppShell"
-xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-xmlns:local="clr-namespace:AcademiaDoZe.Presentation.AppMaui"
-xmlns:views="clr-namespace:AcademiaDoZe.Presentation.AppMaui.Views"
-Title="Academia do Zé">
-    <!--
-<ShellContent
-Title="Home"
-ContentTemplate="{DataTemplate local:MainPage}"
-Route="MainPage" />
--->
+    x:Class="AcademiaDoZe.Presentation.AppMaui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AcademiaDoZe.Presentation.AppMaui"
+    xmlns:views="clr-namespace:AcademiaDoZe.Presentation.AppMaui.Views"
+    Title="Academia do Zé">
 
     <FlyoutItem Title="Dashboard">
-        <!-- Icon="location_icon.png" -->
         <FlyoutItem.Icon>
             <FontImageSource
                 FontFamily="MaterialIcons"
                 Glyph="&#xe871;"
                 Color="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}" />
         </FlyoutItem.Icon>
-        <ShellContent ContentTemplate="{DataTemplate views:DashboardListPage}" Route="dashboard" />
+        <ShellContent
+            ContentTemplate="{DataTemplate views:DashboardListPage}"
+            Route="dashboard" />
     </FlyoutItem>
 
     <FlyoutItem Title="Logradouros">
@@ -32,7 +27,9 @@ Route="MainPage" />
                 Glyph="&#xe7f1;"
                 Color="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}" />
         </FlyoutItem.Icon>
-        <ShellContent ContentTemplate="{DataTemplate views:LogradouroListPage}" Route="logradouros" />
+        <ShellContent
+            ContentTemplate="{DataTemplate views:LogradouroListPage}"
+            Route="logradouros" />
     </FlyoutItem>
 
     <FlyoutItem Title="Configurações">
@@ -42,13 +39,38 @@ Route="MainPage" />
                 Glyph="&#xe8b8;"
                 Color="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}" />
         </FlyoutItem.Icon>
-        <ShellContent ContentTemplate="{DataTemplate views:ConfigPage}" Route="configuracoes"/>
+        <ShellContent
+            ContentTemplate="{DataTemplate views:ConfigPage}"
+            Route="configuracoes" />
     </FlyoutItem>
 
-    <!--
-<TabBar>
-<ShellContent Title="Dashboard" ContentTemplate="{DataTemplate views:DashboardListPage}" Route="dashboard" />
-<ShellContent Title="Logradouros" ContentTemplate="{DataTemplate views:LogradouroListPage}" Route="logradouros" />
-</TabBar>
--->
+    <FlyoutItem Title="Colaboradores">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="MaterialIcons"
+                Glyph="&#xe7ef;"
+                Color="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}" />
+        </FlyoutItem.Icon>
+        <ShellContent
+            ContentTemplate="{DataTemplate views:ColaboradorListPage}"
+            Route="colaboradores" />
+    </FlyoutItem>
+
+
+    <FlyoutItem Title="Alunos">
+        <FlyoutItem.Icon>
+            <FontImageSource
+            FontFamily="MaterialIcons"
+            Glyph="&#xe80c;"
+            Color="{AppThemeBinding Light=#3E5147, Dark=#DCE8DF}" />
+        </FlyoutItem.Icon>
+
+        <ShellContent
+        ContentTemplate="{DataTemplate views:AlunoListPage}"
+        Route="alunos" />
+    </FlyoutItem>
+
+
 </Shell>
+    
+    
